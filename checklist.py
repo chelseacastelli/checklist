@@ -37,27 +37,27 @@ def list_all_items():
 
 def select(function_code):
     # Create item
-    if function_code == "A":
+    if function_code.upper() == "A":
         input_item = user_input("Input item: ")
         create(input_item)
 
     # Read item
-    elif function_code == "R":
+    elif function_code.upper() == "R":
         item_index = user_input("Index Number? ")
 
         # Remember that item_index must actually exist or our program will crash.
         destroy(item_index)
 
-    elif function_code == "U":
+    elif function_code.upper() == "U":
         item_index = user_input("Index Number? ")
         new_item_name = user_input("New item name: ")
         update(item_index, new_item_name)
 
     # Print all items
-    elif function_code == "S":
+    elif function_code.upper() == "S":
         list_all_items()
 
-    elif function_code == "Q":
+    elif function_code.upper() == "Q":
         return False
 
     # Catch all
