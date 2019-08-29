@@ -14,7 +14,12 @@ def update(index, item):
 
 # DESTROY
 def destroy(index):
-    checklist.pop(index)
+    # FROM UMARILL ON
+    # https://discuss.codecademy.com/t/how-can-i-check-if-an-index-is-valid/377316/3
+    try:
+        checklist.pop(int(index))
+    except IndexError:
+        print("There's no item at this index\n")
 
 # PRINT ENTIRE LIST
 def list_all_items():
