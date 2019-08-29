@@ -18,6 +18,10 @@ def destroy(index):
 
 # PRINT ENTIRE LIST
 def list_all_items():
+    # Output for empty list
+    if not checklist:
+        print("List is empty")
+
     index = 0
     for list_item in checklist:
         print("{} {}".format(index, list_item))
