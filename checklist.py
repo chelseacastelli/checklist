@@ -10,54 +10,70 @@ def read(index):
 
 # UPDATE
 def update(index, item):
-    checklist[index] = item
+    checklist[int(index)] = item
 
 # DESTROY
 def destroy(index):
     # FROM UMARILL ON
     # https://discuss.codecademy.com/t/how-can-i-check-if-an-index-is-valid/377316/3
-    try:
+    if checkForItem(index):
         checklist.pop(int(index))
-    except IndexError:
-        print("There's no item at this index\n")
+    else:
+        print("There is no item at this index\n")
+
+def checkForItem(index):
+    try:
+        checklist[int(index)]
+        return True
+    except:
+        return False
 
 # PRINT ENTIRE LIST
 def list_all_items():
     # Output for empty list
-    if not checklist:
-        print("List is empty")
 
     index = 0
+    checkForItem(index)
     for list_item in checklist:
         print("{} {}".format(index, list_item))
         index += 1
 
-#def mark_completed(index):
-
+def mark_complete(index):
+    # Error handle (invalid user input)
+    if checkForItem(index):
+        checklist[int(index)] = u'\u2713' + ' ' + checklist[int(index)]
+    else:
+        print("There is no item at this index\n")
 
 def select(function_code):
     # Create item
-    if function_code.upper() == "A":
+    if function_code == "A":
         input_item = user_input("Input item: ")
         create(input_item)
 
     # Read item
-    elif function_code.upper() == "R":
+    elif function_code == "R":
         item_index = user_input("Index Number? ")
-
         # Remember that item_index must actually exist or our program will crash.
         destroy(item_index)
 
-    elif function_code.upper() == "U":
+    # Update item
+    elif function_code == "U":
         item_index = user_input("Index Number? ")
         new_item_name = user_input("New item name: ")
         update(item_index, new_item_name)
 
-    # Print all items
-    elif function_code.upper() == "S":
+    # Mark complete
+    elif function_code == "C":
+        item_index = user_input("Index Number? ")
+        mark_complete(item_index)
+
+    # List all items
+    elif function_code == "S":
         list_all_items()
 
-    elif function_code.upper() == "Q":
+    # Quit
+    elif function_code == "Q":
         return False
 
     # Catch all
@@ -88,7 +104,7 @@ def test():
     list_all_items()
     select("R")
 
-    user_value = user_input("Please Enter a value: ")
+    user_value = user_input("Please enter a value: ")
     print(user_value)
 
     list_all_items()
@@ -98,4 +114,4 @@ def test():
 running = True
 while running:
     selection = user_input("Press A to add to list, R to remove, U to update an item, C to mark an item complete, and S to show the list:\nPress Q to exit.\n")
-    running = select(selection)
+    running = select(selection.upper())
