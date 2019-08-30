@@ -14,7 +14,7 @@ def update(index, item):
 
 # DESTROY
 def destroy(index):
-    # FROM UMARILL ON
+    # From @umarill on
     # https://discuss.codecademy.com/t/how-can-i-check-if-an-index-is-valid/377316/3
     if checkForItem(index):
         checklist.pop(int(index))
@@ -30,8 +30,8 @@ def checkForItem(index):
 
 # PRINT ENTIRE LIST
 def list_all_items():
+    print('\n')
     # Output for empty list
-
     index = 0
     checkForItem(index)
     for list_item in checklist:
@@ -45,11 +45,13 @@ def mark_complete(index):
     else:
         print("There is no item at this index\n")
 
+    list_all_items()
+
 def select(function_code):
     # Create item
     if function_code == "A":
         input_item = user_input("Input item: ")
-        create(input_item)
+        create(input_item.upper())
 
     # Read item
     elif function_code == "R":
@@ -60,8 +62,11 @@ def select(function_code):
     # Update item
     elif function_code == "U":
         item_index = user_input("Index Number? ")
-        new_item_name = user_input("New item name: ")
-        update(item_index, new_item_name)
+        if checkForItem(item_index):
+            new_item_name = user_input("New item name: ")
+            update(item_index, new_item_name.upper())
+        else:
+            print("There is no item at this index\n")
 
     # Mark complete
     elif function_code == "C":
@@ -79,7 +84,7 @@ def select(function_code):
     # Catch all
     else:
         print("Unknown Option")
-
+    print('\n')
     return True
 
 def user_input(prompt):
