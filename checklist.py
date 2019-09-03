@@ -54,7 +54,6 @@ def color_text(list_item):
     }
     return switcher.get(list_item, Style.RESET_ALL + list_item + Style.RESET_ALL)
 
-
 # Mark items on a list as complete
 def mark_complete(index):
     # Error handle (invalid user input)
@@ -115,6 +114,8 @@ def user_input(prompt):
     user_input = input(prompt)
     return user_input
 
+# FROM GEEKSFORGEEKS
+# https://www.geeksforgeeks.org/clear-screen-python/
 def clear():
     _ = call('clear' if os.name =='posix' else 'cls')
 
@@ -137,5 +138,5 @@ def test():
 
 running = True
 while running:
-    selection = user_input("Press A to add to list, R to remove, U to update an item, C to mark an item complete, and S to show the list:\nPress Q to exit.\n")
+    selection = user_input("Press A to add to list, R to remove, U to update an item, \nC to mark an item complete, and S to show the list:\nPress Q to exit.\n")
     running = select(selection.upper())
