@@ -1,5 +1,7 @@
+# Used for clear()
 import os
 from subprocess import call
+# Used for color_text()
 from colorama import Fore, Back, Style
 
 checklist = list()
@@ -40,6 +42,7 @@ def list_all_items():
     else:
         print("The list is empty")
 
+# Print each color in its corresponding color
 def color_text(list_item):
     if list_item.upper() == "RED":
         return Fore.RED + list_item + Style.RESET_ALL
@@ -56,6 +59,7 @@ def color_text(list_item):
     else:
         return Style.RESET_ALL + list_item + Style.RESET_ALL
 
+# Mark items on a list as complete
 def mark_complete(index):
     # Error handle (invalid user input)
     if item_exists(index):
@@ -118,7 +122,6 @@ def user_input(prompt):
 def clear():
     _ = call('clear' if os.name =='posix' else 'cls')
 
-# TEST
 def test():
     create("purple sox")
     create("red cloak")
@@ -131,13 +134,6 @@ def test():
     destroy(1)
 
     print(read(0))
-
-    select("C")
-    list_all_items()
-    select("R")
-
-    user_value = user_input("Please enter a value: ")
-    print(user_value)
 
     list_all_items()
 
