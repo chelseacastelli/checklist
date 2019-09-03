@@ -44,20 +44,16 @@ def list_all_items():
 
 # Print each color in its corresponding color
 def color_text(list_item):
-    if list_item.upper() == "RED":
-        return Fore.RED + list_item + Style.RESET_ALL
-    elif list_item.upper() == "ORANGE":
-        return Fore.ORANGE + list_item + Style.RESET_ALL
-    elif list_item.upper() == "YELLOW":
-        return Fore.YELLOW + list_item + Style.RESET_ALL
-    elif list_item.upper() == "GREEN":
-        return Fore.GREEN + list_item + Style.RESET_ALL
-    elif list_item.upper() == "BLUE":
-        return Fore.BLUE + list_item + Style.RESET_ALL
-    elif list_item.upper() == "PURPLE":
-        return Fore.MAGENTA + list_item + Style.RESET_ALL
-    else:
-        return Style.RESET_ALL + list_item + Style.RESET_ALL
+    switcher = {
+        "RED": Fore.RED + list_item + Style.RESET_ALL,
+        #"ORANGE": Fore.ORANGE + list_item + Style.RESET_ALL,
+        "YELLOW": Fore.YELLOW + list_item + Style.RESET_ALL,
+        "GREEN": Fore.GREEN + list_item + Style.RESET_ALL,
+        "BLUE": Fore.BLUE + list_item + Style.RESET_ALL,
+        "PURPLE": Fore.MAGENTA + list_item + Style.RESET_ALL,
+    }
+    return switcher.get(list_item, Style.RESET_ALL + list_item + Style.RESET_ALL)
+
 
 # Mark items on a list as complete
 def mark_complete(index):
